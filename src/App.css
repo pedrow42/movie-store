@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+.default{
+  color: inherit;
+}
+.red{
+  color: #A62014;
+}
+.heartDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
