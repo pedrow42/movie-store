@@ -11,7 +11,7 @@ type Props = {
     item: MoviesType;
     handleAddToCart: (clickedItem: MoviesType) => void;
     handleAddFavorite: (clickedItem: MoviesType) => void;
-    removeFromFavorites: (id:number) => void
+    removeFromFavorites: (id:number) => void;
 }
 
 const CardItem:React.FC<Props> = ({item, handleAddToCart, handleAddFavorite, removeFromFavorites}) =>{

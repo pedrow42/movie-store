@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { useQuery } from "react-query";
 import './App.css'
 
 //components
@@ -23,6 +22,7 @@ import Badge from "@mui/material/Badge"
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [favOpen, setFavOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [cartItems, setCartItems] = useState<MoviesType[]>([]);
   const [favItems, setFavItems] = useState<MoviesType[]>([]);
   const [movies, setMovies] = useState<MoviesType[]>([])
@@ -40,12 +40,15 @@ function App() {
     setFavItems(prev =>{
       const isItemInCart = prev.find(item => item.id === clickedItem.id);
       if(isItemInCart){
+        return prev
+      }
+      /*if(isItemInCart){
         return prev.map(item=>
           item.id === clickedItem.id
             ?{...item}
             : item 
         )
-      }
+      }*/
       return [...prev, {...clickedItem, count: 1}];
     })
 
@@ -66,13 +69,8 @@ function App() {
   const handleAddToCart = (clickedItem: MoviesType)=>{
     setCartItems(prev =>{
       const isItemInCart = prev.find(item => item.id === clickedItem.id);
-
       if(isItemInCart){
-        return prev.map(item=>
-          item.id === clickedItem.id
-            ?{...item}
-            : item 
-        )
+        return prev
       }
       return [...prev, {...clickedItem, count: 1}];
     })
@@ -80,15 +78,15 @@ function App() {
   //cart
 
   //loadPage
-  const {data, isLoading} = useQuery<MoviesType[]>('products', api.getAllMovies);
   useEffect(()=>{
     loadMovies()
   }, [])
   const loadMovies = async ()=>{
     let json = await api.getAllMovies()
     setMovies(json)
+    setLoading(false)
   }
-  if(isLoading){
+  if(loading){
     return <LinearProgress/>
   }
   //loadPage
