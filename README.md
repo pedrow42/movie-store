@@ -1,6 +1,6 @@
 # MOVIE STORE
 
-This is a personal project developed during the technical challenge proposed by DOT Digital Group. The objective was to implement a simple digital movie store. Was developed using React + Typescript, and libraries such as Material UI, React Query, Styled-components and Axios to perform the request with the API.
+This is a project developed during the technical challenge proposed by DOT Digital Group. The objective was to implement a simple digital movie store. Was developed using React + Typescript, and libraries such as Material UI, React Query, Styled-components and Axios to perform the request with the API.
 
 ## 🛠 Technologies used
 
