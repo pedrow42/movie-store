@@ -1,6 +1,7 @@
 {
   "name": "desafio-dot",
   "version": "0.0.0",
+  "homepage": "./dist",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
