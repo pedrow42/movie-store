@@ -18,6 +18,7 @@ export const HeartIcon = styled(FavoriteIcon)`
 `
 
 export const CardHeartIcon = styled(IconButton)`
+    width: 40px;
     &:hover{
         color: #A62014;
     }

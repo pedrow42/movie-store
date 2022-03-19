@@ -21,7 +21,7 @@ const CardItem:React.FC<Props> = ({item, handleAddToCart, handleAddFavorite, fav
     return (
         <CardItemWrapper>
             <CardHeartDiv aria-label="add to favorites">
-                <CardHeartIcon className='CardHeartIcon' onClick={handleIconClick}>
+                <CardHeartIcon onClick={handleIconClick}>
                     <div className={'heartDivMain '+"default"}>
                         <FavoriteIcon/>
                     </div>
