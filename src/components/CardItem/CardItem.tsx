@@ -4,7 +4,6 @@ import { CardHeartIcon } from '../CartIcon/CartIcon';
 import { ButtonItem } from './CardItem.style';
 import StarIcon from '@mui/icons-material/Star';
 import { MoviesType } from '../../types/movieType';
-import {useState} from 'react'
 
 
 type Props = {
@@ -12,27 +11,26 @@ type Props = {
     handleAddToCart: (clickedItem: MoviesType) => void;
     handleAddFavorite: (clickedItem: MoviesType) => void;
     removeFromFavorites: (id:number) => void;
+    favItems:MoviesType[];
 }
 
-const CardItem:React.FC<Props> = ({item, handleAddToCart, handleAddFavorite, removeFromFavorites}) =>{
-    const [toggle, setToggle] = useState('default');
-
+const CardItem:React.FC<Props> = ({item, handleAddToCart, handleAddFavorite, favItems}) =>{
     const handleIconClick = ()=>{
-        if(toggle == 'default'){
-            setToggle('red')
-            handleAddFavorite(item)
-        }else{
-            setToggle('default')
-            removeFromFavorites(item.id)
-        }
+        handleAddFavorite(item)
     }
     return (
         <CardItemWrapper>
             <CardHeartDiv aria-label="add to favorites">
-                <CardHeartIcon onClick={handleIconClick}>
-                    <div className={'heartDiv '+toggle}>
+                <CardHeartIcon className='CardHeartIcon' onClick={handleIconClick}>
+                    <div className={'heartDivMain '+"default"}>
                         <FavoriteIcon/>
                     </div>
+                    {favItems.map((favItem, index)=>(
+                        favItem.id === item.id &&
+                        <div key={index} className={'heartDiv '+"red"}>
+                            <FavoriteIcon/>
+                        </div>
+                    ))}
                 </CardHeartIcon>
             </CardHeartDiv>
             <img

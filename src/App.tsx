@@ -25,7 +25,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [cartItems, setCartItems] = useState<MoviesType[]>([]);
   const [favItems, setFavItems] = useState<MoviesType[]>([]);
-  const [movies, setMovies] = useState<MoviesType[]>([])
+  const [movies, setMovies] = useState<MoviesType[]>([]);
 
   const getTotalItems = (items: MoviesType[])=>{
     return items.reduce((ack: number, item) => ack+item.count, 0);
@@ -40,17 +40,12 @@ function App() {
     setFavItems(prev =>{
       const isItemInCart = prev.find(item => item.id === clickedItem.id);
       if(isItemInCart){
-        return prev
+        const remove = favItems.filter((item) => item.id != isItemInCart.id)
+        return remove
       }
-      /*if(isItemInCart){
-        return prev.map(item=>
-          item.id === clickedItem.id
-            ?{...item}
-            : item 
-        )
-      }*/
       return [...prev, {...clickedItem, count: 1}];
     })
+    
 
   }
 
@@ -132,7 +127,7 @@ function App() {
       <MainContainer>
         <GridContainer>
           {movies?.map(item =>(
-              <CardItem item={item} handleAddToCart={handleAddToCart} handleAddFavorite={handleAddFavorite} removeFromFavorites={removeFromFavorites} key={item.id}/>
+              <CardItem item={item} handleAddToCart={handleAddToCart} handleAddFavorite={handleAddFavorite} removeFromFavorites={removeFromFavorites} favItems={favItems} key={item.id}/>
           ))}
         </GridContainer>
       </MainContainer>
